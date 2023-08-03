@@ -18,7 +18,7 @@ class Model:
         current_dict = "2.qtmvvm_example"
         self.pages = {
             "Page 1": current_dict + "/page1.ui",
-            "Page 2": current_dict + "/page2.ui",
+            "Page 2": current_dict + "/page1.ui",
             "Page 3": current_dict + "/page3.ui",
         }
 
@@ -48,6 +48,7 @@ class View(QMainWindow):
 
         # Create QListWidget for navigation menu
         self.list_widget = QListWidget(self)
+        print(self.view_model.model.pages.keys())
         self.list_widget.addItems(self.view_model.model.pages.keys())
         self.list_widget.currentItemChanged.connect(self.show_page)
 
@@ -75,6 +76,7 @@ class View(QMainWindow):
 
         # Load and display the appropriate UI widget based on the menu selection
         ui_file = self.view_model.get_page_ui_file(page_name)
+        print(ui_file)
         if ui_file:
             self.load_ui_widget(ui_file)
 
